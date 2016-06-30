@@ -1,12 +1,29 @@
 #include<chprint.h>
-char *str = "hahahahaha";
+char *str = "OperatingSystem";
+//int *color = [0x7,0x4,0x9];
+
+int getchar(){
+	int ch;
+	asm volatile("int 0x16;"
+			:"=a"(ch)
+			:"a"(0x1000)
+			);
+	return ch;
+
+}
 
 int main(){
-	int r = 0;
-	int c = 0;
-	while(1){
-		for(r = 12, c = 60; r <= 24; r++, c++){
-			print(r,c,str[r % 10]);
+ 	while(1){
+		int i = 0;
+
+		int r;
+		int c;
+	 	for (r = 10,c = 40; r < 25;++r,c--){
+			globalColor ++;
+			globalColor &= 0x07;
+			if (globalColor == 0)globalColor = 1;
+			printColor(r,c,str[i]);
+			i++;
 		}
 	}
 	return 0;
