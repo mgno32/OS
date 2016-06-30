@@ -14,6 +14,6 @@ _start:
 	;mov di, 20h * 4
 	;pushf
 	;call far [es:di]
-	sti
-	int 20h
+	;sti
+	;int 20h
 	jmp $
