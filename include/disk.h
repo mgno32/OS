@@ -3,13 +3,12 @@
 
 #include <stdint.h>
 
-typedef char db;
-typedef uint16_t dw;
-typedef uint32_t dd;
-typedef uint64_t dq;
+#define db char
+#define dw uint16_t
+#define dd uint32_t
 
 #pragma pack (1) // 按1字节对齐
-struct FAT12Header{
+typedef struct{
 	dw jmpShort;//BS_jmpBOOT 一个短跳转指令
 	db nop;
 	db BS_OEMName[8];	// 厂商名
@@ -33,11 +32,11 @@ struct FAT12Header{
 	db BS_FileSysType[8];	//文件系统类型	'FAT12'
 	db other[448];	//引导代码及其他数据	引导代码（剩余空间用0填充）
 	dw _55aa;	//第510字节为0x55，第511字节为0xAA	0xAA55
-};
+}FAT12Header;
 
 
 #pragma pack (1) // 按1字节对齐
-struct Entry {
+typedef struct{
 	db DIR_Name[11];
 	db DIR_Attr;
 	db temp;
@@ -50,7 +49,7 @@ struct Entry {
 	dw LAST_WrtDate;
 	dw DIR_FstClus;
 	dd DIR_FileSize;
-}; 
+}Entry; 
 
 __attribute__((regparm(3)))
 void ReadFloppy(uint16_t sectorID, uint8_t sectorNum, char *data){
