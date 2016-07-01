@@ -34,7 +34,7 @@ write_knl: kernel.bin
 	sudo cp $(BUILD_DIR)/kernel.bin $(DISK_DIR)/
 	sudo umount $(DISK_DIR)/
 
-build_progs: pro4.com 
+build_progs: pro1.com pro2.com pro3.com pro4.com
 
 	sudo mount -o loop $(IMAGE_NAME) disk/
 
