@@ -1,6 +1,6 @@
-#include<chprint.h>
-#include<disk.h>
-#include<pcb.h>
+#include "chprint.h"
+#include "disk.h"
+#include "pcb.h"
 int getchar(){
 	int ch;
 	asm volatile("int 0x16;"
